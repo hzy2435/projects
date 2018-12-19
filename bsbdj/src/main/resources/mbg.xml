@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration 
+	PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+	"http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+	
+<generatorConfiguration>
+	<!-- 环境配置 -->
+	<context id="mycontext" targetRuntime="MyBatis3">
+	
+		<!-- 是否生成注释 -->
+		<commentGenerator>
+			<!-- 不生成注释 -->
+			<property name="suppressAllComments" value="true"/>
+		</commentGenerator>
+		
+		<!-- Jdbc连接信息 -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver" 
+						connectionURL="jdbc:mysql://localhost:3306/bsbdj"
+						userId="root"
+						password="123456">
+		</jdbcConnection>
+		
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false"/>
+		</javaTypeResolver>
+		
+		<!-- 实体类生成设置 -->
+		<javaModelGenerator targetPackage="com.itlaoqi.bsbdj.entity" targetProject="src/main/java">
+			<property name="enableSubPackages" value="true"/>
+		</javaModelGenerator>
+		
+		<!-- xml文件生成设置 -->
+		<sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources/mybatis">
+			<property name="enableSubPackages" value="true"/>
+		</sqlMapGenerator>
+		
+		<!-- map接口生成设置 -->
+		<javaClientGenerator targetPackage="com.itlaoqi.bsbdj.mapper" type="XMLMAPPER" targetProject="src/main/java">
+			<property name="enableSubPackages" value="true"/>
+		</javaClientGenerator>
+		
+		<!-- 表生成 -->
+		<!-- 内容表 -->
+		<table tableName="t_content" domainObjectName="Content" enableSelectByExample="false"
+			enableDeleteByExample="false" enableCountByExample="false" enableUpdateByExample="false">
+			<!-- 修改数据库text类型与java的String类型对应 -->
+			<columnOverride column="content_text" javaType="java.lang.String" jdbcType="VARCHAR"></columnOverride>
+		</table>
+		<!-- 评论表 -->
+		<table tableName="t_comment" domainObjectName="Comment" enableSelectByExample="false"
+			enableDeleteByExample="false" enableCountByExample="false" enableUpdateByExample="false">
+			<columnOverride column="comment_text" javaType="java.lang.String" jdbcType="VARCHAR"></columnOverride>
+		</table>
+		<!-- 论坛表 -->
+		<table tableName="t_forum" domainObjectName="Forum" enableSelectByExample="false"
+			enableDeleteByExample="false" enableCountByExample="false" enableUpdateByExample="false">
+			<columnOverride column="info" javaType="java.lang.String" jdbcType="VARCHAR"></columnOverride>
+		</table>
+		<!-- 图片表 -->
+		<table tableName="t_image" domainObjectName="Image" enableSelectByExample="false"
+			enableDeleteByExample="false" enableCountByExample="false" enableUpdateByExample="false">
+			<!-- 将自动生成的主键回添到对象属性 -->	
+			<generatedKey column="image_id" sqlStatement="mysql" type="post" identity="true"/>
+		</table>
+		<!-- 用户表 -->
+		<table tableName="t_user" domainObjectName="User" enableSelectByExample="false"
+			enableDeleteByExample="false" enableCountByExample="false" enableUpdateByExample="false">
+		</table>
+		<!-- 视频表 -->
+		<table tableName="t_video" domainObjectName="Video" enableSelectByExample="false"
+			enableDeleteByExample="false" enableCountByExample="false" enableUpdateByExample="false">
+			<generatedKey column="video_id" sqlStatement="mysql" type="post" identity="true"/>
+		</table>
+		<!-- 原始数据表 -->
+		<table tableName="t_source" domainObjectName="Source" enableSelectByExample="false"
+			enableDeleteByExample="false" enableCountByExample="false" enableUpdateByExample="false">
+			<generatedKey column="source_id" sqlStatement="mysql" type="post" identity="true"/>
+			<columnOverride column="response_text" javaType="java.lang.String" jdbcType="VARCHAR"/>
+			<columnOverride column="url" javaType="java.lang.String" jdbcType="VARCHAR"/>
+		</table>
+		<!-- 频道表 -->
+		<table tableName="t_channel" domainObjectName="Channel" enableSelectByExample="false"
+			enableDeleteByExample="false" enableCountByExample="false" enableUpdateByExample="false">
+		</table>
+		
+	</context>
+</generatorConfiguration>
