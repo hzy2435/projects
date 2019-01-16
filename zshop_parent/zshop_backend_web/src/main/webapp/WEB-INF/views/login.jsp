@@ -21,7 +21,7 @@
 	    </div>
 	    <div class="panel-body">
 	      <!-- login form start -->
-	      <form action="main.html" class="form-horizontal" method="post">
+	      <form action="${ pageContext.request.contextPath }/backend/user/login" class="form-horizontal" method="post">
 		     <div class="form-group">
 		       <label class="col-sm-3 control-label">用户名：</label>
 		       <div class="col-sm-9">
