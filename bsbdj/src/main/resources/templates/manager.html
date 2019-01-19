@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>《百思不得解》内容管理后台</title>
+	<link rel="stylesheet" href="/layui/css/layui.css">
+</head>
+<body>
+	<blockquote class="layui-elem-quote">《百思不得解》内容管理后台</blockquote>
+	
+	<!-- 搜索 -->
+	<div class="layui-row">
+		<form class="layui-form">
+			<div class="layui-inline" style="width:150px">
+				<select name="channelId" id="channelId">
+					<option value="-1">全部频道</option>
+					<option value="1">推荐</option>
+					<option value="2">视频</option>
+					<option value="3">图片</option>
+					<option value="4">笑话</option>
+					<option value="5">排行</option>
+				</select>
+			</div>
+			
+			<div class="layui-inline" style="width:150px">
+				<select name="contentType" id="contentType">
+					<option value="-1">全部类型</option>
+					<option value="video">视频</option>
+					<option value="image">图片</option>
+					<option value="gif">动态图</option>
+					<option value="text">文本</option>
+				</select>
+			</div>
+			
+			<div class="layui-inline">
+				<div class="layui-input-inline" style="width: 200px">
+					<input type="text" id="keyword" name="keyword" placeholder="请输入要查询的关键字" autocomplete="off" class="layui-input">
+				</div>
+				<a href="javascript:void(0)" id="btnQuery" class="layui-btn">查询</a>
+			</div>
+		</form>
+	</div>
+	
+	<table class="layui-table" lay-data="{height:'auto', url:'/list', page:true, id:'grdContent'}">
+	  <thead>
+	    <tr>
+	      <th lay-data="{field:'content_id', width:80, sort: true}">ID</th>
+	      <th lay-data="{field:'channel_name', sort: true}">频道</th>
+	      <th lay-data="{field:'content_type', sort:true}">类型</th>
+	      <th lay-data="{field:'content_text'}">标题/正文</th>
+	      <th lay-data="{field:'nickname', sort:true}">用户名</th>
+	      <th lay-data="{field:'like_count'}">喜欢</th>
+	      <th lay-data="{field:'hate_count'}">踩</th>
+	      <th lay-data="{field:'bookmark_count'}">收藏数</th>
+	      <th lay-data="{field:'comment_count'}">评论数</th>
+	      <th lay-data="{field:'passtime', sort:true}">发布时间</th>
+	    </tr>
+	  </thead>
+	</table>
+	
+	<script type="text/javascript" src="/layui/layui.js"></script>
+	<script type="text/javascript">
+		layui.use(["layer", "element", "table", "form"], function() {
+			var $ = layui.$;
+			var table = layui.table;
+			$("#btnQuery").click(function() {
+				var channelId = $("#channelId").val();
+				var contentType = $("#contentType").val();
+				var keyword = $("#keyword").val();
+				table.reload("grdContent", {
+					url: "/list",
+					where: {
+						"channelId": channelId,
+						"contentType": contentType,
+						"keyword": keyword
+					}
+				})
+			});
+		});
+	</script>
+</body>
+</html>

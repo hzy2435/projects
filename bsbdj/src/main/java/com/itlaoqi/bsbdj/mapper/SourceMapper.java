@@ -1,5 +1,7 @@
 package com.itlaoqi.bsbdj.mapper;
 
+import java.util.List;
+
 import com.itlaoqi.bsbdj.entity.Source;
 
 public interface SourceMapper {
@@ -14,4 +16,6 @@ public interface SourceMapper {
     int updateByPrimaryKeySelective(Source record);
 
     int updateByPrimaryKey(Source record);
+
+	List<Source> selectByState(String state);
 }

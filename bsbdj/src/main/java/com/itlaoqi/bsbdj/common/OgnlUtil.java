@@ -74,9 +74,9 @@ public class OgnlUtil {
 		return result;
 	}
 
-	public static List<Map> getListMap(String ognl, Map root) {
+	public static List<Map<String, Object>> getListMap(String ognl, Map root) {
 
-		List<Map> list = null;
+		List<Map<String, Object>> list = null;
 
 		try {
 			list = (List) Ognl.getValue(ognl, root);

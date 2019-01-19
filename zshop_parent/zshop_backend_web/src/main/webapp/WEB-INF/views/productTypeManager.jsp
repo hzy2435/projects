@@ -13,6 +13,33 @@
     <script src="${pageContext.request.contextPath}/js/jquery.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap.js"></script>
     <script src="${pageContext.request.contextPath}/js/userSetting.js"></script>
+    <script src="${pageContext.request.contextPath}/js/bootstrap-paginator.js"></script>
+     <script>
+	        $(function(){
+	           $('#pagination').bootstrapPaginator({
+	               bootstrapMajorVersion:3,
+	               currentPage:${pageInfo.pageNum},
+	               totalPages:${pageInfo.pages},
+	               pageUrl:function(type,page, current){
+	                    return '${pageContext.request.contextPath}/backend/productType/getAll?pageNum='+page;
+	               },
+	               itemTexts: function (type, page, current) {
+	                   switch (type) {
+	                       case "first":
+	                           return "首页";
+	                       case "prev":
+	                           return "上一页";
+	                       case "next":
+	                           return "下一页";
+	                       case "last":
+	                           return "末页";
+	                       case "page":
+	                           return page;
+	                   }
+	               }
+	           });
+	        });
+      </script>
 </head>
 
 <body>
@@ -24,7 +51,7 @@
             <input type="button" value="添加商品类型" class="btn btn-primary" id="doAddProTpye">
             <br>
             <br>
-            <div class="show-list">
+            <div class="show-list text-center">
                 <table class="table table-bordered table-hover" style='text-align: center;'>
                     <thead>
                         <tr class="text-danger">
@@ -49,6 +76,7 @@
                     	</c:forEach>
                     </tbody>
                 </table>
+                <ul id="pagination"></ul>
             </div>
         </div>
     </div>

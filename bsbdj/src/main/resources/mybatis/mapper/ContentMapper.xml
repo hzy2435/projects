@@ -221,4 +221,19 @@
       create_time = #{createTime,jdbcType=TIMESTAMP}
     where content_id = #{contentId,jdbcType=BIGINT}
   </update>
+  
+  <select id="findByParams" resultType="java.util.HashMap" parameterType="java.util.HashMap">
+  	select c.*, ch.channel_name, u.nickname
+  	from t_content c, t_channel ch, t_user u
+  	where c.channel_id = ch.channel_id and c.uid = u.uid
+  	<if test="channelId != null">
+  		and c.channel_id = #{channelId}
+  	</if>
+  	<if test="contentType != null">
+  		and c.content_type = #{contentType}
+  	</if>
+  	<if test="keyword != null">
+  		and c.content_text like concat('%', #{keyword}, '%')
+  	</if>
+  </select>
 </mapper>

@@ -101,4 +101,10 @@
       state = #{state,jdbcType=VARCHAR}
     where source_id = #{sourceId,jdbcType=BIGINT}
   </update>
+  
+  <!-- 根据状态查找 -->
+  <select id="selectByState" parameterType="String" resultMap="BaseResultMap">
+  	select * from t_source
+  	where state = #{state}
+  </select>
 </mapper>

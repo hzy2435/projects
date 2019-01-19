@@ -1,5 +1,8 @@
 package com.itlaoqi.bsbdj.mapper;
 
+import java.util.List;
+import java.util.Map;
+
 import com.itlaoqi.bsbdj.entity.Content;
 
 public interface ContentMapper {
@@ -14,4 +17,6 @@ public interface ContentMapper {
     int updateByPrimaryKeySelective(Content record);
 
     int updateByPrimaryKey(Content record);
+
+	List<Map<String, Object>> findByParams(Map<String, Object> params);
 }

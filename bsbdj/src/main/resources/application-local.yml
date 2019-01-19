@@ -1,8 +1,10 @@
 spring: 
+  thymeleaf:
+    cache: false
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/bsbdj?useUnicode=true&useSSL=false
+    url: jdbc:mysql://127.0.0.1:3306/bsbdj?useUnicode=true&useSSL=false&serverTimezone=Asia/Shanghai
     username: root
     password: 123456
     # 连接池的配置信息
@@ -21,7 +23,9 @@ spring:
     filters: stat, wall, logback
     useGlobalDataSourceStat: true
     connectionProperties: druid.stat.mergeSql\=true;druid.stat.slowSqlMillis\=500
-    
+    tomcat:
+      init-s-q-l: SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci
+      
   jackson:
     serialization:
       indent-output: true
@@ -29,6 +33,11 @@ spring:
 mybatis: 
   config-location: classpath:/mybatis/mybatis-config.xml
   mapper-locations: classpath:/mybatis/mapper/*.xml
+
+# 分页插件 pageHelper 配置
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
 
 # 打印sql语句
 logging:

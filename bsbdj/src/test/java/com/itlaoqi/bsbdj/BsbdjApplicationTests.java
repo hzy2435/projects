@@ -70,7 +70,7 @@ public class BsbdjApplicationTests {
 		Gson gson = new Gson();
 		Map result = gson.fromJson(json, new TypeToken<Map>() {}.getType());
 		
-		List<Map> list = OgnlUtil.getListMap("list", result);
+		List<Map<String, Object>> list = OgnlUtil.getListMap("list", result);
 		System.out.println("list.size: " + list.size());
 		
 		int comment = OgnlUtil.getNumber("comment", list.get(0)).intValue();
